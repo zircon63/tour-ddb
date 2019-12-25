@@ -2,10 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/user.entity';
 import { hashEqual } from './crypto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService) {
+  constructor(private readonly usersService: UsersService,
+              private readonly configService: ConfigService) {
   }
 
   public async signUp(user: User) {
@@ -15,7 +17,7 @@ export class AuthService {
 
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.usersService.findOne({ login: username });
-    const isEqual = hashEqual(password, user.password);
+    const isEqual = hashEqual(password, this.configService.get('auth.salt'), user.password);
     if (isEqual) {
       return user;
     }

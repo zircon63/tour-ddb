@@ -1,11 +1,11 @@
 import * as crypto from 'crypto';
 
-export function generateHash(value: string): string {
+export function generateHash(value: string, salt: string): string {
   return crypto.createHash('md5')
-    .update(value)
+    .update(value + salt)
     .digest('base64');
 }
 
-export function hashEqual(value: string, hash: string): boolean {
-  return this.generateHash(value) === hash;
+export function hashEqual(value: string, salt: string, hash: string): boolean {
+  return this.generateHash(value, salt) === hash;
 }

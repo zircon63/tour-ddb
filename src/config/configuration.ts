@@ -1,4 +1,16 @@
 export default () => ({
+  auth: {
+    salt: process.env.SALT,
+    secret: process.env.SESSION_SECRET,
+    ttl: process.env.SESSION_TTL,
+  },
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    dbs: {
+      session: process.env.REDIS_SESSION,
+    },
+  },
   database: {
     host: process.env.DATABASE_HOST,
     name: process.env.DATABASE_NAME,

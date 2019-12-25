@@ -16,6 +16,7 @@ import { typeOrmOptions } from './config/type-orm.options';
     }),
     ConfigModule.forRoot({
       load: [configuration],
+      isGlobal: true
     }),
     TypeOrmModule.forRootAsync(typeOrmOptions),
     AuthModule,
