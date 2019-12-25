@@ -37,7 +37,8 @@
     "rxjs": "^6.5.3",
     "typeorm": "^0.2.22",
     "redis": "^2.8.0",
-    "connect-redis": "^4.0.3"
+    "connect-redis": "^4.0.3",
+    "class-transformer": "^0.2.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
