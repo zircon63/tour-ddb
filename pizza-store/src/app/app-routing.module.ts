@@ -1,14 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { CanActivateAuthGuard } from './auth/can-activate-auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [CanActivateAuthGuard],
-  },
   {
     path: '',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
@@ -20,7 +13,7 @@ const routes: Routes = [
 ];
 
 const config: ExtraOptions = {
-  useHash: false,
+  useHash: true,
   paramsInheritanceStrategy: 'always',
 };
 

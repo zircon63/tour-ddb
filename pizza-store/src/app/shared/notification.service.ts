@@ -1,26 +1,32 @@
-import {Injectable} from '@angular/core';
-import {SnackBarConfig} from '@ui/shared/models/snackbar-config.model';
-import {MatSnackBar} from '@angular/material';
+import { Injectable } from '@angular/core';
+import { SnackBarConfig } from '@ui/shared/models/snackbar-config.model';
+import { MatSnackBar } from '@angular/material';
 
-@Injectable({providedIn: 'root'})
-export class NotificationService {
-  constructor(private snackbar: MatSnackBar) { }
+export interface NotificationInterface {
+  message(value: string): void;
 
-  showErrorMessage(err: string) {
-    this.snackbar.open(err, 'Закрыть',  new SnackBarConfig());
+  error(value: string): void;
+
+  success(value: string): void;
+}
+
+@Injectable({ providedIn: 'root' })
+export class NotificationService implements NotificationInterface {
+  constructor(private snackbar: MatSnackBar) {
   }
 
-  showSuccessMessage(msg: string) {
-    this.snackbar.open(msg, 'Закрыть',  new SnackBarConfig('succsess'));
+  error(value: string): void {
+    const config = new SnackBarConfig('error');
+    this.snackbar.open(value, 'Закрыть', config);
   }
 
-  showSuccessRemoved() {
-    this.snackbar.open('Успешно удалено', 'Закрыть',  new SnackBarConfig('succsess'));
+  message(value: string): void {
+    const config = new SnackBarConfig('message');
+    this.snackbar.open(value, 'Закрыть', config);
   }
-  showSuccessEdited() {
-    this.snackbar.open('Успешно отредактировано', 'Закрыть',  new SnackBarConfig('succsess'));
-  }
-  showSuccessCreated() {
-    this.snackbar.open('Успешно создано', 'Закрыть',  new SnackBarConfig('succsess'));
+
+  success(value: string): void {
+    const config = new SnackBarConfig('success');
+    this.snackbar.open(value, 'Закрыть', config);
   }
 }

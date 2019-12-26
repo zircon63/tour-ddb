@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
-import { User } from '../users/user.entity';
+import { UserEntity } from '../users/user.entity';
 import { hashEqual } from './crypto';
 import { ConfigService } from '@nestjs/config';
 
@@ -10,17 +10,17 @@ export class AuthService {
               private readonly configService: ConfigService) {
   }
 
-  public async signUp(user: User) {
+  public async signUp(user: UserEntity) {
     user = await this.usersService.create(user);
     return user;
   }
 
   async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.usersService.findOne({ login: username });
-    const isEqual = hashEqual(password, this.configService.get('auth.salt'), user.password);
-    if (isEqual) {
-      return user;
-    }
-    return null;
+    return await this.usersService.findOneOrFail({ login: username })
+      .then(user => {
+        const isEqual = hashEqual(password, this.configService.get('auth.salt'), user.password);
+        return isEqual ? user : Promise.reject();
+      })
+      .catch(() => Promise.reject(new BadRequestException('Неверный пользователь или пароль')));
   }
 }

@@ -1,0 +1,26 @@
+.mat-snack-bar {
+  &-container {
+    &.__error {
+      background-color: map_get($mat-red, 800);
+      color: $white;
+    }
+
+    &.__success {
+      background-color: map_get($mat-green, 800);
+      color: $white;
+    }
+
+    &.__message {
+      background-color: map_get($mat-blue, 800);
+      color: $white;
+    }
+  }
+}
+
+.mat-simple-snackbar-action {
+  color: $white !important;
+
+  .mat-button {
+    background-color: rgba($white, .1);
+  }
+}

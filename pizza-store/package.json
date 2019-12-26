@@ -24,6 +24,7 @@
     "@angular/router": "~8.2.14",
     "@datorama/akita": "^4.17.1",
     "@datorama/akita-ng-entity-service": "^1.0.0",
+    "@angular/flex-layout": "^8.0.0-beta.27",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

@@ -1,19 +1,24 @@
-<div class="header__prefix">
-  <a routerLink="/" class="header__logo">
-    <mat-icon svgIcon="logo" class="__w132 __h32"></mat-icon>
-  </a>
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="toggle.emit()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <div fxLayout="row wrap" fxLayoutAlign="flex-end" fxFlex>
+    <ng-container *ngIf="user.login;then logInView; else logOutView"></ng-container>
+    <ng-template #logInView>
+      <app-cart-info [amount]="10"></app-cart-info>
+      <span>
+        {{user.login}}
+        <a mat-flat-button color="primary" href="/api/auth/logout">Выйти</a>
+      </span>
+    </ng-template>
 
-  <div class="header__actions">
-    <button mat-icon-button>
-      <mat-icon class="__s16" svgIcon="user-strocked"></mat-icon>
-    </button>
-
-    <button mat-icon-button>
-      <mat-icon class="__s16" svgIcon="cross"></mat-icon>
-    </button>
+    <ng-template #logOutView>
+      <button mat-flat-button color="primary" [routerLink]="['./login']">Войти</button>
+    </ng-template>
   </div>
-</div>
 
-<div class="header__suffix">
-  <button mat-button class="header__link" (click)="logout()">Выйти</button>
-</div>
+</mat-toolbar>

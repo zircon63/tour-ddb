@@ -15,8 +15,8 @@ export class AccountService {
               private accountApiService: AccountApiService) {
   }
 
-  login(credentials: Credentials) {
-    return this.accountApiService.login(credentials).pipe(
+  signup(credentials: Credentials) {
+    return this.accountApiService.signup(credentials).pipe(
       tap((account: Account) => {
         this.authStore.login(account);
       }),
@@ -27,10 +27,10 @@ export class AccountService {
     );
   }
 
-  logout() {
-    return this.accountApiService.logout().pipe(
-      tap(() => {
-        this.authStore.logout();
+  login(credentials: Credentials) {
+    return this.accountApiService.login(credentials).pipe(
+      tap((account: Account) => {
+        this.authStore.login(account);
       }),
       catchError(error => {
         console.log(error);

@@ -4,9 +4,16 @@ import { HeaderComponent } from '@ui/ui-components/header/header.component';
 import { MaterialModule } from '@ui/material.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MenuComponent } from '@ui/ui-components/menu/menu.component';
+import { CartInfoComponent } from '@ui/ui-components/cart-info/cart-info.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 const UI_COMPONENTS = [
   HeaderComponent,
+  MenuComponent,
+  CartInfoComponent
 ];
 
 @NgModule({
@@ -16,6 +23,9 @@ const UI_COMPONENTS = [
     MaterialModule,
     RouterModule,
     ReactiveFormsModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatBadgeModule,
   ],
   exports: UI_COMPONENTS,
   providers: [],

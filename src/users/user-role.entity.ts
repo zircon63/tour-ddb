@@ -1,6 +1,6 @@
 import { Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Role } from './user-role.enum';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 
 @Entity({
   name: 'user_roles',
@@ -16,8 +16,8 @@ export class UserRole {
     default: Role.Buyer,
   })
   role: Role;
-  @ManyToOne(type => User, user => user.roles)
-  user: User;
+  @ManyToOne(type => UserEntity, user => user.roles)
+  user: UserEntity;
 
   constructor(userId?: number, role: Role = Role.Buyer) {
     this.userId = userId;

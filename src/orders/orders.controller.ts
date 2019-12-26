@@ -1,37 +1,40 @@
-import { Controller, Req, UseGuards } from '@nestjs/common';
-import { Crud, CrudController, CrudRequest, Override, ParsedBody, ParsedRequest } from '@nestjsx/crud';
-import { Order } from './order.entity';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { OrderProductDTO } from './dto/order-product.dto';
-import { Request } from 'express';
 import { AuthenticatedGuard } from '../auth/guards/authenticated.guard';
-import { User } from '../users/user.entity';
+import { User } from '../auth/decorators/user.decorator';
+import { OrderProduct } from './order-product.entity';
+import { Order } from './order.entity';
 
-@Crud({
-  model: {
-    type: Order,
-  },
-})
 @UseGuards(AuthenticatedGuard)
 @Controller('orders')
-export class OrdersController implements CrudController<Order> {
-  constructor(public service: OrdersService) {
+export class OrdersController {
+  constructor(private readonly ordersService: OrdersService) {
   }
 
-  @Override()
-  async createOne(
-    @ParsedRequest() crudRequest: CrudRequest,
-    @ParsedBody() dto: OrderProductDTO[],
-    @Req() request: Request,
+  @Post()
+  async create(
+    @Body() dto: OrderProductDTO[],
+    @User('id') userId: number,
   ) {
-    const user = request.user as User;
-    const order = new Order();
-    order.userId = user.id;
-    await this.base.createOneBase(crudRequest, order);
-    return order;
+    const order = new Order(userId);
+    order.products = dto.map(item => new OrderProduct({ productId: item.id, amount: item.amount }));
+    return await this.ordersService.create(order);
   }
 
-  get base(): CrudController<Order> {
-    return this;
+  @Put('/:id')
+  async update(@Param('id') id: string,
+               @Body() order: Order) {
+    return this.ordersService.update(id, order);
+  }
+
+  @Get('/:id')
+  async get(@Param('id') id: string) {
+    return this.ordersService.findOne({ id: Number(id) });
+  }
+
+  @Delete('/:id')
+  async remove(@Param('id') id: string) {
+    return this.ordersService.remove(id);
   }
 }

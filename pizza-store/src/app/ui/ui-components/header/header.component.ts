@@ -1,24 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {AccountService} from '../../../auth/state';
-import {Router} from '@angular/router';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgOnDestroy } from '@core/destroy.service';
+import { Account } from '../../../auth/state/models/account.model';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  providers: [NgOnDestroy],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class HeaderComponent implements OnInit {
-  constructor(private authService: AccountService,
-              private router: Router) {
-  }
-
-  ngOnInit() {
-  }
-
-  logout() {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
-  }
+export class HeaderComponent {
+  @Input() user: Account;
+  @Output() toggle = new EventEmitter();
 }

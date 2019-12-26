@@ -15,6 +15,7 @@ export const typeOrmOptions: TypeOrmModuleAsyncOptions = {
       __dirname + '/../**/*.entity{.ts,.js}',
     ],
     synchronize: true,
+    logging: 'all',
   }),
   inject: [ConfigService],
 };

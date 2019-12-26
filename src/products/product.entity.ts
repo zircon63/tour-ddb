@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderProduct } from '../orders/order-product.entity';
 import { Category } from '../categories/category.entity';
+import { OrderProduct } from '../orders/order-product.entity';
 
 @Entity('product')
 export class Product {
@@ -12,6 +12,8 @@ export class Product {
   description: string;
   @Column('int')
   price: number;
+  @Column('int')
+  categoryId: number;
 
   @OneToOne(type => Category, { cascade: true, eager: true })
   @JoinColumn()

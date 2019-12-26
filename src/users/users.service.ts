@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { DeepPartial, getConnection, Repository } from 'typeorm';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { generateHash } from '../auth/crypto';
 import { ConfigService } from '@nestjs/config';
@@ -11,15 +11,15 @@ import { Role } from './user-role.enum';
 export class UsersService {
 
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(UserRole)
     private readonly roleRepository: Repository<UserRole>,
     private readonly configService: ConfigService,
   ) {
   }
 
-  public async create(user: User): Promise<User> {
+  public async create(user: UserEntity): Promise<UserEntity> {
     user.password = generateHash(user.password, this.configService.get('auth.salt'));
     const buyerRole = new UserRole();
     user.roles = [buyerRole];
@@ -30,7 +30,7 @@ export class UsersService {
     }
   }
 
-  public async updateRoles(user: User, roles: Role[]) {
+  public async updateRoles(user: UserEntity, roles: Role[]) {
     try {
       await this.roleRepository.remove(user.roles);
       user.roles = roles.map(r => new UserRole(user.id, r));
@@ -40,15 +40,15 @@ export class UsersService {
     }
   }
 
-  public async findAll(): Promise<User[]> {
+  public async findAll(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
-  public async findOne(params: DeepPartial<User>): Promise<User> {
+  public async findOne(params: DeepPartial<UserEntity>): Promise<UserEntity> {
     return await this.userRepository.findOne(params);
   }
 
-  public async findOneOrFail(params: DeepPartial<User>): Promise<User> {
+  public async findOneOrFail(params: DeepPartial<UserEntity>): Promise<UserEntity> {
     return await this.userRepository.findOneOrFail(params);
   }
 }

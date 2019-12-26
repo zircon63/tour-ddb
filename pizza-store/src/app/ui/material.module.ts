@@ -10,6 +10,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {IMatIcon} from './shared/interfaces/mat-icon.interface';
 import {MaterialIconsList} from './shared/material-icons-list';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 const MAT_MODULES = [
@@ -29,7 +31,12 @@ const MAT_MODULES = [
   MatOptionModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatListModule,
+  MatSidenavModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatIconModule,
 ];
 
 @NgModule({

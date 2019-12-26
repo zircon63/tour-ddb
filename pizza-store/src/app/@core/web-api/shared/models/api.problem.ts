@@ -1,5 +1,5 @@
 export interface ApiProblem {
-  code: string;
+  statusCode: number;
+  error: string;
   message: string;
-  parameters: any;
 }

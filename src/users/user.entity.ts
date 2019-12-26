@@ -7,11 +7,14 @@ import { Order } from '../orders/order.entity';
 @Entity({
   name: 'user',
 })
-export class User implements UserInterface {
+export class UserEntity implements UserInterface {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column({
+    type: 'varchar',
+    unique: true,
+  })
   login: string;
 
   @Column('varchar')

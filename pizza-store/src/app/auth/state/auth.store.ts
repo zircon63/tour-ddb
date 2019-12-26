@@ -8,7 +8,7 @@ export const initialState = Account.empty();
   providedIn: 'root'
 })
 @StoreConfig({
-  name: 'Account',
+  name: 'auth',
   resettable: true
 })
 export class AuthStore extends Store<Account> {
