@@ -9,6 +9,9 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmOptions } from './config/type-orm.options';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ProductsModule } from './products/products.module';
+import { CategoriesModule } from './categories/categories.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -17,11 +20,14 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     }),
     ConfigModule.forRoot({
       load: [configuration],
-      isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync(typeOrmOptions),
     AuthModule,
     UsersModule,
+    ProductsModule,
+    CategoriesModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [
