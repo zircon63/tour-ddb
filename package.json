@@ -41,7 +41,8 @@
     "class-transformer": "^0.2.3",
     "@nestjsx/crud": "^4.3.3",
     "@nestjsx/crud-typeorm": "^4.3.3",
-    "class-validator": "^0.11.0"
+    "class-validator": "^0.11.0",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
