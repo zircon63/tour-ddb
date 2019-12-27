@@ -11,7 +11,7 @@ import { OrderQuery } from '@pages/orders/state/order.query';
 })
 export class OrdersComponent implements OnInit {
   items$: Observable<Order[]> = this.orderQuery.selectAll();
-  displayedColumns: Array<keyof Order> = ['id', 'date', 'status'];
+  displayedColumns: Array<keyof Order> = ['date', 'status'];
 
   constructor(private orderQuery: OrderQuery) {
   }

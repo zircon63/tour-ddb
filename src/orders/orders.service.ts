@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Order } from './order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
+import { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
 
 @Injectable()
 export class OrdersService {
@@ -23,5 +24,9 @@ export class OrdersService {
 
   async findOne(params: DeepPartial<Order>) {
     return this.orderRepository.findOne(params);
+  }
+
+  async find(params: FindManyOptions<Order>) {
+    return this.orderRepository.find(params);
   }
 }

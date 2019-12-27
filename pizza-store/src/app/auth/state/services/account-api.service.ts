@@ -6,6 +6,7 @@ import { Account } from '../models/account.model';
 import { Observable } from 'rxjs';
 import { NotificationService } from '@shared/notification.service';
 import { catchErrorApi } from '@core/web-api/shared/catchErrorApi';
+import { Order } from '@pages/orders/state/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,12 @@ export class AccountApiService {
   user(): Observable<Account> {
     return this.api.get<Account>('user').pipe(
       map(user => new Account(user)),
+    );
+  }
+
+  orders() {
+    return this.api.get<Order[]>('user/orders').pipe(
+      catchErrorApi(this.notificationService),
     );
   }
 }

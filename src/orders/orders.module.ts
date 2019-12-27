@@ -10,6 +10,7 @@ import { OrderProductService } from './order-product.service';
   imports: [TypeOrmModule.forFeature([Order, OrderProduct])],
   providers: [OrdersService, OrderProductService],
   controllers: [OrdersController],
+  exports: [OrdersService],
 })
 export class OrdersModule {
 }

@@ -12,6 +12,6 @@ export class OrdersUserResolver implements Resolve<Order[]> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Order[]> | Promise<Order[]> | Order[] {
-    return undefined;
+    return this.orderService.getUser();
   }
 }

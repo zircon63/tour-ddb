@@ -6,4 +6,9 @@ export const MENU: MenuItem[] = [
     link: '/products',
     icon: 'star'
   },
+  {
+    title: 'Заказы',
+    link: '/orders',
+    icon: 'star'
+  },
 ];
