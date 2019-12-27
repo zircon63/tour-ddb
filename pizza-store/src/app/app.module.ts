@@ -5,9 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UiModule } from '@ui/ui.module';
 import { CoreModule } from '@core/core.module';
-import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,11 +16,8 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AuthModule,
     UiModule.forRoot(),
-    environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
-  providers: [
-    { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' } },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {

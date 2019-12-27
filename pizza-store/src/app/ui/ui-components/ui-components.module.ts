@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuComponent } from '@ui/ui-components/menu/menu.component';
 import { CartInfoComponent } from '@ui/ui-components/cart-info/cart-info.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const UI_COMPONENTS = [
   HeaderComponent,
@@ -26,6 +27,7 @@ const UI_COMPONENTS = [
     MatToolbarModule,
     FlexLayoutModule,
     MatBadgeModule,
+    MatTooltipModule,
   ],
   exports: UI_COMPONENTS,
   providers: [],

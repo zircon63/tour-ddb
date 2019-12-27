@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Attribute } from '@angular/core';
+import { Attribute, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { MenuItem } from '@ui/ui-components/shared/menu.item';
 
 @Component({
   selector: 'app-menu',
@@ -7,6 +8,8 @@ import { Component, OnInit, ChangeDetectionStrategy, Attribute } from '@angular/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent implements OnInit {
+  @Input() items: MenuItem[];
+
   constructor(@Attribute('title') public title: string) {
   }
 

@@ -1,17 +1,14 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Order } from './order.entity';
 import { Product } from '../products/product.entity';
 import { Exclude } from 'class-transformer';
 
 @Entity('order_product')
 export class OrderProduct {
-  @PrimaryGeneratedColumn()
-  @Exclude()
-  id: number;
-  @Column('int')
+  @PrimaryColumn('int')
   @Exclude()
   orderId: number;
-  @Column('int')
+  @PrimaryColumn('int')
   @Exclude()
   productId: number;
   @Column('int')

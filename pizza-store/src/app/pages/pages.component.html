@@ -3,11 +3,12 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
-    <app-menu title="Pizza-store"></app-menu>
+    <app-menu title="Pizza-store" [items]="menu"></app-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header
       [user]="user$ | async"
+      [amountCartItems]="amountCartItems$ | async"
       (toggle)="drawer.toggle()">
     </app-header>
     <router-outlet></router-outlet>

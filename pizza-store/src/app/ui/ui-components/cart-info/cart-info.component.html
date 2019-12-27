@@ -1,6 +1,9 @@
 <button mat-flat-button color="primary"
         [matBadge]="amount"
         matBadgePosition="above after"
-        matBadgeColor="warn">
-  Корзина
+        matBadgeColor="warn"
+        matTooltip="Корзина"
+        [routerLink]="['/cart']"
+>
+  <mat-icon>card_travel</mat-icon>
 </button>

@@ -5,6 +5,7 @@ import { REQUEST_BUILDER, RequestBuilder } from './shared/models/request-builder
 import { WebApiClient } from './shared/services/web-api-client.service';
 import { WebApiService } from './shared/services/web-api.service';
 import { WEB_API_CONFIG } from './web-api.config';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ export class WebApiModule {
         { provide: WebApiClient, useClass: HttpClient },
         { provide: REQUEST_BUILDER, useClass: RequestBuilder },
         { provide: WEB_API_CONFIG, useValue: webApiConfig },
+        { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: webApiConfig.baseUrl } },
         WebApiClient,
         WebApiService,
         ...interceptors,

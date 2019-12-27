@@ -1,11 +1,11 @@
-import {HttpHeaders, HttpParams} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {WEB_API_CONFIG} from '../../web-api.config';
-import {RequestOptions, ResultRequest} from '../interfaces/request.params.builder.interface';
-import {WebApiModuleConfig} from '../interfaces/web.api.config.interface';
-import {REQUEST_BUILDER, RequestBuilder} from '../models/request-builder.service';
-import {WebApiClient} from './web-api-client.service';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { WEB_API_CONFIG } from '../../web-api.config';
+import { RequestOptions, ResultRequest } from '../interfaces/request.params.builder.interface';
+import { WebApiModuleConfig } from '../interfaces/web.api.config.interface';
+import { REQUEST_BUILDER, RequestBuilder } from '../models/request-builder.service';
+import { WebApiClient } from './web-api-client.service';
 
 @Injectable()
 export class WebApiService {
@@ -20,7 +20,7 @@ export class WebApiService {
   public get<Response>(url: string, options: RequestOptions = {
     params: new HttpParams(),
     observe: undefined,
-    responseType: 'json'
+    responseType: 'json',
   }): Observable<Response> {
     const request = this.builder
       .init()
@@ -61,7 +61,7 @@ export class WebApiService {
 
   public post<Body, Response>(url: string, body?: Body, options: RequestOptions = {
     observe: 'body',
-    reportProgress: false
+    reportProgress: false,
   }): Observable<Response> {
     const request = this.builder
       .init()
@@ -89,7 +89,7 @@ export class WebApiService {
   }
 
   private preparedUrl(url: string): string {
-    return this.config.baseUrl + url;
+    return this.config.baseUrl + '/' + url;
   }
 
   private makeRequest<Response>(request: ResultRequest) {

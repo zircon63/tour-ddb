@@ -1,0 +1,7 @@
+@import "variables";
+.mat-list-item {
+  &.__active {
+    color: map-get($mat-indigo, 500);
+    font-weight: bold;
+  }
+}

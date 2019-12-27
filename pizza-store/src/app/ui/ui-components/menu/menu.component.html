@@ -1,4 +1,9 @@
 <mat-toolbar>{{title}}</mat-toolbar>
 <mat-nav-list>
-  <a mat-list-item href="#">Продукты</a>
+  <mat-list-item *ngFor="let item of items">
+    <a matLine
+       [routerLink]="item.link"
+       [routerLinkActive]="'__active'">{{ item.title }}</a>
+    <mat-icon>{{item.icon}}</mat-icon>
+  </mat-list-item>
 </mat-nav-list>
