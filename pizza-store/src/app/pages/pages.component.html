@@ -1,17 +1,15 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
+<app-header
+  [user]="user$ | async"
+  [amountCartItems]="amountCartItems$ | async"
+  (toggle)="drawer.toggle()">
+</app-header>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="over" opened class="example-sidenav" [fixedInViewport]="false">
     <app-menu title="Pizza-store" [items]="menu"></app-menu>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <app-header
-      [user]="user$ | async"
-      [amountCartItems]="amountCartItems$ | async"
-      (toggle)="drawer.toggle()">
-    </app-header>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

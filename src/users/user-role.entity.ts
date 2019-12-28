@@ -19,8 +19,7 @@ export class UserRole {
   @ManyToOne(type => UserEntity, user => user.roles)
   user: UserEntity;
 
-  constructor(userId?: number, role: Role = Role.Buyer) {
-    this.userId = userId;
-    this.role = role;
+  constructor(data: Partial<UserRole>) {
+    Object.assign(this, data);
   }
 }

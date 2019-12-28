@@ -8,6 +8,14 @@
     </mat-select>
   </mat-form-field>
   <app-price-filter formControlName="price"></app-price-filter>
+  <mat-form-field>
+    <mat-label>Сортировка</mat-label>
+    <mat-select formControlName="sort">
+      <mat-option *ngFor="let sort of SORT_VALUES" [value]="sort.value">
+        {{sort.view}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button mat-flat-button [disabled]="searchForm.invalid" (click)="onSearch()">Поиск</button>
   <button mat-flat-button (click)="reset()">Сбросить</button>
 </form>

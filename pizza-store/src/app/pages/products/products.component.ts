@@ -22,9 +22,9 @@ import { CartService } from '@pages/cart/state/cart.service';
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </ng-template>
     <ng-template #gridView>
-      <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start" class="product-list">
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="flex-start" class="product-list">
         <ng-container *ngFor="let product of products$ | async">
-          <app-product-card fxFlex="0 1 250px"
+          <app-product-card fxFlex="0 0 250px"
                             [product]="product"
                             (buy)="addToCart($event)">
           </app-product-card>

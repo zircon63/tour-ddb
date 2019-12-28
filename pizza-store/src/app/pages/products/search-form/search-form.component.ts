@@ -3,12 +3,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from '@pages/products/state/category.model';
 
 export interface SearchFormHttpParams {
-  [param: string]: ReadonlyArray<string>;
+  [param: string]: ReadonlyArray<string> | string;
 }
 
 export interface SearchFormValue {
   category: number[];
   price: string;
+  sort: 'ASC' | 'DESC';
 }
 
 @Component({
@@ -23,7 +24,18 @@ export class SearchFormComponent implements OnChanges {
   searchForm = this.fb.group({
     category: this.fb.control(null, Validators.required),
     price: this.fb.control('0,1000', Validators.required),
+    sort: this.fb.control('ASC', Validators.required),
   });
+  SORT_VALUES = [
+    {
+      value: 'ASC',
+      view: 'По возрастанию',
+    },
+    {
+      value: 'DESC',
+      view: 'По убыванию',
+    },
+  ];
 
   constructor(private fb: FormBuilder) {
   }
@@ -46,12 +58,14 @@ export class SearchFormComponent implements OnChanges {
     this.searchForm.reset({
       category: this.categories.map(c => c.id),
       price: '0,1000',
+      sort: 'ASC',
     });
     this.onSearch();
   }
 
   private getHttpParams(formValue: SearchFormValue): SearchFormHttpParams {
     return {
+      sort: `price,${formValue.sort}`,
       filter: Object.entries(formValue).reduce((params, [key, value]) => {
         switch (key) {
           case 'category':

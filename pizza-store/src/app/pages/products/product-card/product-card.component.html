@@ -7,7 +7,10 @@
   <mat-card-content>
     <p>{{product.description}}</p>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions align="end">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      {{product.price | currency}}
+    </div>
     <button mat-button (click)="buy.emit(product)">Купить</button>
   </mat-card-actions>
 </mat-card>

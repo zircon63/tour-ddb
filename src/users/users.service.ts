@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { DeepPartial, getConnection, Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { generateHash } from '../auth/crypto';
@@ -21,7 +21,9 @@ export class UsersService {
 
   public async create(user: UserEntity): Promise<UserEntity> {
     user.password = generateHash(user.password, this.configService.get('auth.salt'));
-    const buyerRole = new UserRole();
+    const buyerRole = new UserRole({
+      role: Role.Buyer,
+    });
     user.roles = [buyerRole];
     try {
       return await this.userRepository.save(user);
@@ -32,8 +34,9 @@ export class UsersService {
 
   public async updateRoles(user: UserEntity, roles: Role[]) {
     try {
-      await this.roleRepository.remove(user.roles);
-      user.roles = roles.map(r => new UserRole(user.id, r));
+      user.roles = roles.map(r => new UserRole({
+        role: r,
+      }));
       return await this.userRepository.save(user);
     } catch (error) {
       throw new BadRequestException('Ошибка обновления ролей пользователя');

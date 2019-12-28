@@ -14,8 +14,15 @@ export const typeOrmOptions: TypeOrmModuleAsyncOptions = {
     entities: [
       __dirname + '/../**/*.entity{.ts,.js}',
     ],
-    synchronize: true,
+    migrations: [
+      'dist/migration/**{.ts,.js}',
+    ],
+    synchronize: false,
+    migrationsRun: false,
     logging: 'all',
+    cli: {
+      migrationsDir: 'dist/migration',
+    },
   }),
   inject: [ConfigService],
 };
