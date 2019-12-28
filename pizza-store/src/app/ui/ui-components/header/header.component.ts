@@ -12,6 +12,6 @@ import { Account } from '../../../auth/state/models/account.model';
 
 export class HeaderComponent {
   @Input() user: Account;
-  @Input() amountCartItems: number;
+  @Input() amountCartItems: string;
   @Output() toggle = new EventEmitter();
 }

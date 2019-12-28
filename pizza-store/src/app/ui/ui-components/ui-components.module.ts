@@ -10,11 +10,14 @@ import { MenuComponent } from '@ui/ui-components/menu/menu.component';
 import { CartInfoComponent } from '@ui/ui-components/cart-info/cart-info.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { UiDirectivesModule } from '@ui/ui-directives/ui-directives.module';
+import { CrudTableComponent } from '@ui/ui-components/crud-table/crud-table.component';
 
 const UI_COMPONENTS = [
   HeaderComponent,
   MenuComponent,
-  CartInfoComponent
+  CartInfoComponent,
+  CrudTableComponent
 ];
 
 @NgModule({
@@ -28,6 +31,7 @@ const UI_COMPONENTS = [
     FlexLayoutModule,
     MatBadgeModule,
     MatTooltipModule,
+    UiDirectivesModule,
   ],
   exports: UI_COMPONENTS,
   providers: [],

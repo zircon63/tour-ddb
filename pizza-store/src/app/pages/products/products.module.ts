@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { UiDirectivesModule } from '@ui/ui-directives/ui-directives.module';
 
 @NgModule({
   declarations: [ProductCardComponent, SearchFormComponent, ProductsComponent, PriceFilterComponent],
@@ -24,6 +25,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     FlexLayoutModule,
     MatProgressBarModule,
+    UiDirectivesModule,
   ],
 })
 export class ProductsModule {

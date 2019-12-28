@@ -26,6 +26,7 @@ import { MaterialIconsList } from './shared/material-icons-list';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MAT_MODULES = [
   MatIconModule,
@@ -51,6 +52,7 @@ const MAT_MODULES = [
   MatToolbarModule,
   MatIconModule,
   MatTooltipModule,
+  MatTabsModule,
 ];
 
 @NgModule({

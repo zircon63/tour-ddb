@@ -5,6 +5,7 @@ import { AuthGuard } from './auth.guard';
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CanActivateAuthGuard } from './can-activate-auth.guard';
+import { HasRoleGuard } from './has-role.guard';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { CanActivateAuthGuard } from './can-activate-auth.guard';
   providers: [
     AuthGuard,
     CanActivateAuthGuard,
+    HasRoleGuard,
     {
       provide: APP_INITIALIZER,
       useFactory: APP_INIT,

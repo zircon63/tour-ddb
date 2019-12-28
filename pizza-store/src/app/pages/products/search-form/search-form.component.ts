@@ -66,17 +66,10 @@ export class SearchFormComponent implements OnChanges {
   private getHttpParams(formValue: SearchFormValue): SearchFormHttpParams {
     return {
       sort: `price,${formValue.sort}`,
-      filter: Object.entries(formValue).reduce((params, [key, value]) => {
-        switch (key) {
-          case 'category':
-            params.push(`${key}||$inL||${value.join(',')}`);
-            break;
-          case 'price':
-            params.push(`${key}||$between||${value}`);
-            break;
-        }
-        return params;
-      }, []),
+      filter: [
+        `category||$inL||${formValue.category.join(',')}`,
+        `price||$between||${formValue.price}`,
+      ],
     };
   }
 

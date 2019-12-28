@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import * as passport from 'passport';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
+import * as compression from 'compression';
 import { REDIS_STORE } from './redis/redis.store';
 
 async function bootstrap() {
@@ -15,7 +16,7 @@ async function bootstrap() {
     saveUninitialized: false,
     store: REDIS_STORE,
   }));
-
+  app.use(compression());
   app.use(cookieParser());
   app.use(passport.initialize());
   app.use(passport.session());

@@ -1,10 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map, shareReplay } from 'rxjs/operators';
 import { AuthQuery } from '../auth/state';
-import { MENU } from '@pages/shared/menu';
 import { CartQuery } from '@pages/cart/state/cart.query';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pages',
@@ -15,16 +12,10 @@ import { CartQuery } from '@pages/cart/state/cart.query';
 
 export class PagesComponent {
   user$ = this.authQuery.user$;
-  amountCartItems$ = this.cartQuery.selectCount();
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay(),
-    );
-  menu = MENU;
+  amountCartItems$ = this.cartQuery.selectCount().pipe(map(String));
+  menu$ = this.authQuery.menu$;
 
-  constructor(private breakpointObserver: BreakpointObserver,
-              private authQuery: AuthQuery,
+  constructor(private authQuery: AuthQuery,
               private cartQuery: CartQuery) {
   }
 }

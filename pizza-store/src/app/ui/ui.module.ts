@@ -24,7 +24,7 @@ const ENTRY_COMPONENTS: Array<Type<any> | any[]> = [];
 })
 export class UiModule {
   static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders> {
+    return {
       ngModule: UiModule,
       providers: [...UI_PROVIDERS],
     };

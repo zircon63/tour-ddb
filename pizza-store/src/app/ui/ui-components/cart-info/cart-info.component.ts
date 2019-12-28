@@ -7,7 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartInfoComponent implements OnInit {
-  @Input() amount: number;
+  @Input() amount: string;
   constructor() { }
 
   ngOnInit() {

@@ -1,0 +1,28 @@
+<app-crud-table [data]="data$ | async"
+                [columnsDefinitions]="columnDefinitions"
+                (add)="add($event)"
+                (update)="update($event.id, $event)"
+                (delete)="delete($event.id, $event)">
+  <ng-template #form let-data>
+    <h2 mat-dialog-title>Категория | {{data.title}}</h2>
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="data.form">
+        <input class="cdk-visually-hidden" type="text" formControlName="id">
+        <mat-form-field fxLayout="row">
+          <mat-label>Дата</mat-label>
+          <input matInput type="text" formControlName="date">
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Статус</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of ORDER_STATUS" [value]="status.value">{{status.view}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>{{data.closeLabel}}</button>
+      <button mat-button [mat-dialog-close]="data.form.value" cdkFocusInitial>{{data.actionLabel}}</button>
+    </mat-dialog-actions>
+  </ng-template>
+</app-crud-table>

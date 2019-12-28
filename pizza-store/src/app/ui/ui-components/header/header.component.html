@@ -7,7 +7,10 @@
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <div fxLayout="row wrap" fxLayoutAlign="flex-end" fxFlex>
-    <app-cart-info [amount]="amountCartItems"></app-cart-info>
+    <ng-container *hasRole="['buyer']">
+      <app-cart-info [amount]="amountCartItems"></app-cart-info>
+    </ng-container>
+
     <ng-container *ngIf="user.login;then logInView; else logOutView"></ng-container>
     <ng-template #logInView>
       <span>
@@ -17,7 +20,7 @@
     </ng-template>
 
     <ng-template #logOutView>
-      <button mat-flat-button color="primary" [routerLink]="['./login']">Войти</button>
+      <button mat-flat-button color="primary" [routerLink]="['/login']">Войти</button>
     </ng-template>
   </div>
 

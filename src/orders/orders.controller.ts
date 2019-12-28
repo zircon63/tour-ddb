@@ -5,14 +5,18 @@ import { AuthenticatedGuard } from '../auth/guards/authenticated.guard';
 import { User } from '../auth/decorators/user.decorator';
 import { OrderProduct } from './order-product.entity';
 import { Order } from './order.entity';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { Role } from '../users/user-role.enum';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
-@UseGuards(AuthenticatedGuard)
+@UseGuards(AuthenticatedGuard, RolesGuard)
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {
   }
 
   @Post()
+  @Roles(Role.Buyer)
   async create(
     @Body() dto: OrderProductDTO[],
     @User('id') userId: number,
@@ -26,6 +30,12 @@ export class OrdersController {
   async update(@Param('id') id: string,
                @Body() order: Order) {
     return this.ordersService.update(id, order);
+  }
+
+  @Get()
+  @Roles(Role.Admin)
+  async getAll() {
+    return this.ordersService.find();
   }
 
   @Get('/:id')

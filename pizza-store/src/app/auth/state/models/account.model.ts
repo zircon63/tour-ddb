@@ -23,4 +23,8 @@ export class Account implements IAccount {
   constructor(data: IAccount) {
     Object.assign(this, data);
   }
+
+  hasRole(role: Role) {
+    return this.roles.includes(role);
+  }
 }

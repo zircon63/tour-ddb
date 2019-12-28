@@ -11,6 +11,6 @@
     <div fxLayout="row" fxLayoutAlign="center center">
       {{product.price | currency}}
     </div>
-    <button mat-button (click)="buy.emit(product)">Купить</button>
+    <button mat-button (click)="buy.emit(product)" *hasRole="['buyer']">Купить</button>
   </mat-card-actions>
 </mat-card>

@@ -26,7 +26,7 @@ export class OrdersService {
     return this.orderRepository.findOne(params);
   }
 
-  async find(params: FindManyOptions<Order>) {
+  async find(params?: FindManyOptions<Order>) {
     return this.orderRepository.find(params);
   }
 }
