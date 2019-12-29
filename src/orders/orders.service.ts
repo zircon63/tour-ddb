@@ -19,7 +19,8 @@ export class OrdersService {
   }
 
   async update(id: string, order: Order) {
-    return this.orderRepository.update(id, order);
+    await this.orderRepository.update(id, order);
+    return order;
   }
 
   async findOne(params: DeepPartial<Order>) {

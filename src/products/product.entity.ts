@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Category } from '../categories/category.entity';
 import { OrderProduct } from '../orders/order-product.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('product')
 export class Product {
@@ -13,6 +14,7 @@ export class Product {
   @Column('float')
   price: number;
   @Column('int')
+  @Exclude()
   categoryId: number;
 
   @ManyToOne(type => Category, category => category.products, {

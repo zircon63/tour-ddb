@@ -1,18 +1,20 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ColumnDefinition } from '@ui/ui-components/crud-table/column.definition';
 import { CategoryQuery } from '@pages/products/state/category.query';
 import { CategoryService } from '@pages/products/state/category.service';
-import { CrudComponent } from '@ui/ui-components/crud-table/crud.component';
+import { CrudOperation, CrudTableDataProvider, provideCrudOperation } from '@ui/ui-components/crud-table/crudOperation';
 import { CategoryState } from '@pages/products/state/category.store';
-import { NotificationService } from '@shared/notification.service';
 
 @Component({
   selector: 'app-category-table',
   templateUrl: './category-table.component.html',
   styleUrls: ['./category-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    provideCrudOperation(CategoryService),
+  ],
 })
-export class CategoryTableComponent extends CrudComponent<CategoryState> implements OnInit {
+export class CategoryTableComponent implements CrudTableDataProvider<CategoryState> {
   data$ = this.categoryQuery.selectAll();
   columnDefinitions: ColumnDefinition[] = [
     {
@@ -26,12 +28,7 @@ export class CategoryTableComponent extends CrudComponent<CategoryState> impleme
   ];
 
   constructor(private categoryQuery: CategoryQuery,
-              protected categoryService: CategoryService,
-              protected notificationService: NotificationService) {
-    super(categoryService, notificationService);
-  }
-
-  ngOnInit() {
+              public crud: CrudOperation<CategoryState>) {
   }
 
 }

@@ -1,5 +1,5 @@
 import { OrderStatus } from './status.enum';
-import { BeforeInsert, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { AfterLoad, BeforeInsert, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { OrderProduct } from './order-product.entity';
 import { UserEntity } from '../users/user.entity';
 import * as moment from 'moment';
@@ -28,6 +28,7 @@ export class Order {
     eager: true,
   })
   products: OrderProduct[];
+  total: number;
 
   constructor(userId: number) {
     this.userId = userId;
@@ -36,5 +37,10 @@ export class Order {
   @BeforeInsert()
   setDate() {
     this.date = moment().format('YYYY-MM-DD HH:mm:ss');
+  }
+
+  @AfterLoad()
+  setTotal() {
+    this.total = this.products.reduce((total, product) => total += product.amount * product.product.price, 0);
   }
 }

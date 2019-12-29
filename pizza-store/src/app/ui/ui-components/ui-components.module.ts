@@ -12,12 +12,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UiDirectivesModule } from '@ui/ui-directives/ui-directives.module';
 import { CrudTableComponent } from '@ui/ui-components/crud-table/crud-table.component';
+import { TableCellPipe } from '@ui/ui-components/crud-table/table-cell.pipe';
 
 const UI_COMPONENTS = [
   HeaderComponent,
   MenuComponent,
   CartInfoComponent,
-  CrudTableComponent
+  CrudTableComponent,
+  TableCellPipe,
 ];
 
 @NgModule({

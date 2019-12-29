@@ -6,6 +6,8 @@ import { OrdersTableComponent } from './orders-table/orders-table.component';
 import { UiComponentsModule } from '@ui/ui-components/ui-components.module';
 import { MaterialModule } from '@ui/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductModule } from '@pages/admin-panel/product/product.module';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     UiComponentsModule,
     MaterialModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
+    ProductModule,
   ],
 })
 export class OrdersModule { }

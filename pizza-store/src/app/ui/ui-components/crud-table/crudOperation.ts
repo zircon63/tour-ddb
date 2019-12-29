@@ -2,13 +2,16 @@ import { NgEntityService } from '@datorama/akita-ng-entity-service';
 import { NotificationService } from '@shared/notification.service';
 import { EntityState, getEntityType, getIDType } from '@datorama/akita';
 import { take } from 'rxjs/operators';
-import { ColumnDefinition } from '@ui/ui-components/crud-table/column.definition';
+import { Provider, Type } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ColumnDefinition } from '@ui/ui-components/crud-table/column.definition';
 
-export class CrudComponent<S extends EntityState> {
+export interface CrudTableDataProvider<S> {
   data$: Observable<getEntityType<S>[]>;
   columnDefinitions: ColumnDefinition[];
+}
 
+export class CrudOperation<S extends EntityState> {
   constructor(protected service: NgEntityService<S>,
               protected notificationService: NotificationService) {
   }
@@ -39,4 +42,14 @@ export class CrudComponent<S extends EntityState> {
       () => this.notificationService.error('Ошибка удаления'),
     );
   }
+}
+
+export function provideCrudOperation<S>(token: Type<NgEntityService<S>>): Provider[] {
+  return [
+    {
+      provide: NgEntityService,
+      useExisting: token,
+    },
+    CrudOperation,
+  ];
 }

@@ -1,8 +1,8 @@
 <app-crud-table [data]="data$ | async"
                 [columnsDefinitions]="columnDefinitions"
-                (add)="add($event)"
-                (update)="update($event.id, $event)"
-                (delete)="delete($event.id, $event)">
+                (add)="crud.add($event)"
+                (update)="crud.update($event.id, $event)"
+                (delete)="crud.delete($event.id, $event)">
   <ng-template #form let-data>
     <h2 mat-dialog-title>Категория | {{data.title}}</h2>
     <mat-dialog-content class="mat-typography">

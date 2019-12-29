@@ -1,12 +1,12 @@
 <button mat-button color="accent" matTooltip="Создать" (click)="openAddDialog()">
   Создать
 </button>
-<table mat-table [dataSource]="data">
+<table mat-table [dataSource]="source">
   <ng-container
     *ngFor="let columnDef of columnsDefinitions"
     [matColumnDef]="columnDef.name">
     <th mat-header-cell *matHeaderCellDef>{{columnDef.header}}</th>
-    <td mat-cell *matCellDef="let element"> {{element[columnDef.name]}} </td>
+    <td mat-cell *matCellDef="let element"> {{element | tableCell: columnDef}} </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
@@ -24,7 +24,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 <ng-template #confirmDialog>
   <h2 mat-dialog-title>Подтверждение действия</h2>
   <mat-dialog-content class="mat-typography">
