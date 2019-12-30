@@ -1,5 +1,6 @@
 <app-crud-table [data]="data$ | async"
                 [columnsDefinitions]="columnDefinitions"
+                [operations]="operations"
                 (add)="crud.add($event)"
                 (update)="crud.update($event.id, $event)"
                 (delete)="crud.delete($event.id, $event)">

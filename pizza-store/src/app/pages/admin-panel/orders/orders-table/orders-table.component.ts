@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CrudOperation, CrudTableDataProvider, provideCrudOperation } from '@ui/ui-components/crud-table/crudOperation';
+import { AllowedCrudOperations, CrudOperation, CrudTableDataProvider, provideCrudOperation } from '@ui/ui-components/crud-table/crudOperation';
 import { OrderState } from '@pages/orders/state/order.store';
 import { OrderService } from '@pages/orders/state/order.service';
 import { OrderQuery } from '@pages/orders/state/order.query';
@@ -32,6 +32,11 @@ export class OrdersTableComponent implements CrudTableDataProvider<OrderState> {
       header: 'Статус',
     },
   ];
+  operations: AllowedCrudOperations = {
+    add: false,
+    delete: true,
+    update: true,
+  };
 
   ORDER_STATUS = ORDER_STATUS;
 

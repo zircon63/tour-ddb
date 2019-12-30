@@ -16,7 +16,7 @@ export class CartService {
   }
 
   add(product: Product) {
-    const findItem = this.cartQuery.getEntity(product);
+    const findItem = this.cartQuery.getEntity(product.id);
     if (findItem) {
       return this.updateAmount(findItem);
     }

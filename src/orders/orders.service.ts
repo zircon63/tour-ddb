@@ -3,6 +3,7 @@ import { Order } from './order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
 import { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
+import { OrderStatus } from './status.enum';
 
 @Injectable()
 export class OrdersService {
@@ -29,5 +30,13 @@ export class OrdersService {
 
   async find(params?: FindManyOptions<Order>) {
     return this.orderRepository.find(params);
+  }
+
+  async amount(status: OrderStatus) {
+    return this.orderRepository.count({
+      where: {
+        status,
+      },
+    });
   }
 }

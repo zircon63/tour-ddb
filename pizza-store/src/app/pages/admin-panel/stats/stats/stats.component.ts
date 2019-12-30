@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { StatsService } from '@pages/admin-panel/stats/stats.service';
 
 @Component({
   selector: 'app-stats',
@@ -6,35 +7,23 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatsComponent implements OnInit {
-  single: any[];
-  multi: any[];
-
-  view: any[] = [700, 400];
+export class StatsComponent {
+  data$ = this.statsService.getAmountByStatus();
+  view = [800, 400];
 
   // options
   showXAxis = true;
   showYAxis = true;
-  gradient = false;
-  showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  yAxisLabel = 'Заказ';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  xAxisLabel = 'Количество';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
+    domain: ['#2e7d32', '#c62828', '#1565c0'],
   };
 
-  constructor() {
+  constructor(private statsService: StatsService) {
 
   }
-
-  onSelect(event) {
-    console.log(event);
-  }
-
-  ngOnInit() {
-  }
-
 }

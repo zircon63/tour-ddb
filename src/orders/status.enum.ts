@@ -4,6 +4,12 @@ export enum OrderStatus {
   Completed = 'completed',
 }
 
+export const ORDER_VIEW_MAP = {
+  [OrderStatus.Created]: 'Создан',
+  [OrderStatus.Process]: 'В процессе',
+  [OrderStatus.Completed]: 'Завершен',
+};
+
 export const ORDER_STATUS = [
   {
     value: OrderStatus.Created,

@@ -9,6 +9,13 @@ import { ColumnDefinition } from '@ui/ui-components/crud-table/column.definition
 export interface CrudTableDataProvider<S> {
   data$: Observable<getEntityType<S>[]>;
   columnDefinitions: ColumnDefinition[];
+  operations?: AllowedCrudOperations;
+}
+
+export interface AllowedCrudOperations {
+  add: boolean;
+  update: boolean;
+  delete: boolean;
 }
 
 export class CrudOperation<S extends EntityState> {

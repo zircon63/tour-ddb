@@ -18,6 +18,7 @@ import { filter, take } from 'rxjs/operators';
 import { CrudFormContext } from '@ui/ui-components/crud-table/crud-form.context';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AllowedCrudOperations } from '@ui/ui-components/crud-table/crudOperation';
 
 @Component({
   selector: 'app-crud-table',
@@ -29,6 +30,11 @@ export class CrudTableComponent<T> implements OnInit, OnChanges {
   displayedColumns: string[];
   source: MatTableDataSource<T>;
   @Input() data: T[];
+  @Input() operations: AllowedCrudOperations = {
+    add: true,
+    delete: true,
+    update: true,
+  };
   @Input() columnsDefinitions: ColumnDefinition[];
   @Output() update = new EventEmitter<T>();
   @Output() delete = new EventEmitter<T>();
