@@ -47,11 +47,14 @@ export class UserEntity1577541515219 implements MigrationInterface {
           name: 'userId',
           type: 'int',
           isPrimary: true,
+          isNullable: false,
         },
         {
           name: 'role',
           type: 'enum',
           enum: [Role.Admin, Role.Buyer],
+          isPrimary: true,
+          isNullable: false,
         },
       ],
     }));

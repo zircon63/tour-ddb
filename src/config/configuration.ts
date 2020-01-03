@@ -3,10 +3,12 @@ export default () => ({
     salt: process.env.SALT,
     secret: process.env.SESSION_SECRET,
     ttl: process.env.SESSION_TTL,
+    sessionName: process.env.SESSION_NAME,
   },
   redis: {
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
+    socket: process.env.REDIS_SOCKET,
     dbs: {
       session: process.env.REDIS_SESSION,
     },

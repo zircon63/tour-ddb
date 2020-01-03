@@ -13,6 +13,7 @@ import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
 import { OrdersModule } from './orders/orders.module';
 import { StatsModule } from './stats/stats.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { StatsModule } from './stats/stats.module';
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync(typeOrmOptions),
+    RedisModule,
     AuthModule,
     UsersModule,
     ProductsModule,

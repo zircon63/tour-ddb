@@ -10,6 +10,10 @@ export class UserSeed1577546018674 implements MigrationInterface {
       login: 'admin',
       password: 'IBBWeSDz6cNybsohd1aPvw==',
     });
+    const adminAndBuyer = new UserEntity({
+      login: 'admin-buyer',
+      password: 'IBBWeSDz6cNybsohd1aPvw==',
+    });
     const buyer = new UserEntity({
       login: 'buyer',
       password: 'IBBWeSDz6cNybsohd1aPvw==',
@@ -19,12 +23,20 @@ export class UserSeed1577546018674 implements MigrationInterface {
         role: Role.Admin,
       }),
     ];
+    adminAndBuyer.roles = [
+      new UserRole({
+        role: Role.Admin,
+      }),
+      new UserRole({
+        role: Role.Buyer,
+      }),
+    ];
     buyer.roles = [
       new UserRole({
         role: Role.Buyer,
       }),
     ];
-    await getRepository(UserEntity).save([admin, buyer]);
+    await getRepository(UserEntity).save([admin, adminAndBuyer, buyer]);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
