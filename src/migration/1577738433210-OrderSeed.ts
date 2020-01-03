@@ -10,6 +10,7 @@ export class OrderSeed1577738433210 implements MigrationInterface {
     const orders = new Array(50).fill(1).map(() => {
       const order = new Order(2);
       order.status = faker.random.arrayElement(Object.values(OrderStatus));
+      order.userId = 3;
       order.products = new Array(faker.random.number({
         min: 1,
         max: 5,
