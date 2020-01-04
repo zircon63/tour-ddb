@@ -18,7 +18,7 @@ services:
   redis:
     image: redis
     ports:
-    - "6379:6379"
+    - "63797:6379"
     networks:
       - net
 
@@ -29,7 +29,7 @@ services:
       - ../:/pizza-store
     command: "npm run start:debug"
     ports:
-      - "3000:3000"
+      - "6225:3000"
       - "9229:9229"
     depends_on:
       - mysql
