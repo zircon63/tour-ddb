@@ -1,24 +1,24 @@
 import { PassportSerializer } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { UserEntity } from '../users/user.entity';
-import { UsersService } from '../users/users.service';
+import { EmployeeEntity } from '../employees/employee.entity';
+import { EmployeesService } from '../employees/employees.service';
 
 @Injectable()
 export class LocalSerializer extends PassportSerializer {
   constructor(
     private readonly authService: AuthService,
-    private readonly usersService: UsersService,
+    private readonly employeesService: EmployeesService,
   ) {
     super();
   }
 
-  serializeUser(user: UserEntity, done: CallableFunction) {
+  serializeUser(user: EmployeeEntity, done: CallableFunction) {
     done(null, user.id);
   }
 
   async deserializeUser(userId: string, done: CallableFunction) {
-    return await this.usersService.findOneOrFail({ id: Number(userId) })
+    return await this.employeesService.findOneOrFail({ id: Number(userId) })
       .then(user => done(null, user))
       .catch(error => done(error));
   }

@@ -5,15 +5,15 @@ import { AngularModule } from './angular/angular.module';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmOptions } from './config/type-orm.options';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { ProductsModule } from './products/products.module';
-import { CategoriesModule } from './categories/categories.module';
-import { OrdersModule } from './orders/orders.module';
-import { StatsModule } from './stats/stats.module';
 import { RedisModule } from './redis/redis.module';
+import { ClientsModule } from './clients/clients.module';
+import { SalesModule } from './sales/sales.module';
+import { ToursModule } from './tours/tours.module';
+import { CountriesModule } from './countries/countries.module';
+import { DiscountsModule } from './discounts/discounts.module';
 
 @Module({
   imports: [
@@ -27,11 +27,11 @@ import { RedisModule } from './redis/redis.module';
     TypeOrmModule.forRootAsync(typeOrmOptions),
     RedisModule,
     AuthModule,
-    UsersModule,
-    ProductsModule,
-    CategoriesModule,
-    OrdersModule,
-    StatsModule,
+    ClientsModule,
+    SalesModule,
+    ToursModule,
+    CountriesModule,
+    DiscountsModule,
   ],
   controllers: [AppController],
   providers: [
