@@ -15,6 +15,11 @@ export class TourTypeSeed1590928804739 implements MigrationInterface {
           description: 'Групповой',
         },
       ),
+      new TourTypeEntity(
+        {
+          description: 'Локальный',
+        },
+      ),
     ];
     return getRepository(TourTypeEntity, 'local1-seed').save(tourTypes);
   }

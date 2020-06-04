@@ -48,6 +48,8 @@
                   "with": "src/environments/environment.local1.ts"
                 }
               ],
+              "baseHref": "/local1/",
+              "deployUrl": "/local1/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -78,6 +80,8 @@
                   "with": "src/environments/environment.local2.ts"
                 }
               ],
+              "baseHref": "/local2/",
+              "deployUrl": "/local2/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -108,6 +112,8 @@
                   "with": "src/environments/environment.central.ts"
                 }
               ],
+              "baseHref": "/central/",
+              "deployUrl": "/central/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

@@ -100,6 +100,19 @@ services:
       - redis3
     networks:
       - net
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./tour-ddb/dist/tour-ddb:/var/www/html/web
+    depends_on:
+      - api1
+      - api2
+      - api3
+    networks:
+      - net
 networks:
   net:
     driver: bridge

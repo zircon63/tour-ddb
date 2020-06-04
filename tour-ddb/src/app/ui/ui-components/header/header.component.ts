@@ -15,4 +15,5 @@ export class HeaderComponent {
   @Input() user: Account;
   @Output() toggle = new EventEmitter();
   officeName = environment.officeName;
+  apiURL = environment.WEB_API_URL;
 }

@@ -5,9 +5,9 @@ import { TourEntity } from '../../tours/tour.entity';
 export class TourSeed1590930114443 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<any> {
-    const tours = new Array(25).fill(1).map(() => {
+    const tours = new Array(40).fill(1).map(() => {
       return new TourEntity({
-        name: faker.lorem.word(),
+        name: faker.lorem.words(2),
         price: faker.random.number({ min: 1000, max: 100000, precision: 0.1 }),
         arrival_date: faker.date.past(),
         departure_date: faker.date.future(),

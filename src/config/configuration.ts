@@ -14,9 +14,7 @@ export default () => ({
     },
   },
   type: process.env.TYPE,
-  client: {
-    path: process.env.CLIENT_PATH,
-  },
+  rootPath: process.env.ROOT_PATH,
   database: {
     local: {
       host: process.env.DATABASE_LOCAL_HOST,

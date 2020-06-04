@@ -14,7 +14,7 @@
     <ng-template #logInView>
       <span>
         Сотрудник: {{user.name}} {{user.surname}}
-        <a mat-flat-button color="primary" href="/api/auth/logout">Выйти</a>
+        <a mat-flat-button color="primary" [href]="apiURL +'/auth/logout'">Выйти</a>
       </span>
     </ng-template>
 

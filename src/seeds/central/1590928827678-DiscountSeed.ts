@@ -21,6 +21,10 @@ export class DiscountSeed1590928827678 implements MigrationInterface {
         amount: 0.07,
         description: 'Предоплата для групповых туров от 2х человек',
       }),
+      new DiscountEntity({
+        amount: 0.17,
+        description: 'Предоплата для индивидуальных туров',
+      }),
     ];
     return getRepository(DiscountEntity, 'central-seed').save(discounts);
   }

@@ -7,13 +7,13 @@ export class TourSeed1590930114443 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     const tours = new Array(25).fill(1).map(() => {
       return new TourEntity({
-        name: faker.lorem.word(),
+        name: faker.lorem.words(2),
         price: faker.random.number({ min: 1000, max: 100000, precision: 0.1 }),
         arrival_date: faker.date.past(),
         departure_date: faker.date.future(),
         country_id: faker.random.number({ min: 1, max: 20, precision: 1 }),
         discount_id: faker.random.number({ min: 1, max: 4, precision: 1  }),
-        tour_type_id: faker.random.number({ min: 1, max: 2, precision: 1  }),
+        tour_type_id: faker.random.number({ min: 1, max: 3, precision: 1  }),
       });
     });
     return getRepository(TourEntity, 'local1-seed').save(tours);

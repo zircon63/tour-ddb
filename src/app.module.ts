@@ -1,5 +1,4 @@
 import { ClassSerializerInterceptor, Module } from '@nestjs/common';
-import { AngularModule } from './angular/angular.module';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { AuthModule } from './auth/auth.module';
@@ -16,7 +15,6 @@ import { typeOrmOptionsCentral } from './config/type-orm.options.central';
 
 @Module({
   imports: [
-    AngularModule.forRoot(),
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,
