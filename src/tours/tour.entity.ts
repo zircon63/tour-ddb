@@ -34,7 +34,7 @@ export class TourEntity implements TourInterface {
   @ManyToOne(() => CountryEntity, country => country.tours)
   readonly country: CountryEntity;
   @ManyToOne(() => DiscountEntity, tourType => tourType.tours)
-  readonly discount: DiscountEntity;
+  discount: DiscountEntity;
 
   @OneToMany(() => SaleEntity, sale => sale.tour)
   readonly sales: SaleEntity[];

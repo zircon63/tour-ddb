@@ -59,15 +59,7 @@ export class Tour1590873783370 implements MigrationInterface {
             referencedTableName: 'country',
             onUpdate: 'NO ACTION',
             onDelete: 'NO ACTION',
-          },
-          {
-            name: 'fk_discount',
-            columnNames: ['discount_id'],
-            referencedColumnNames: ['id'],
-            referencedTableName: 'discount',
-            onUpdate: 'NO ACTION',
-            onDelete: 'NO ACTION',
-          },
+          }
         ],
       }),
     );
@@ -76,7 +68,6 @@ export class Tour1590873783370 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropForeignKey('tour', 'fk_tour_type');
     await queryRunner.dropForeignKey('tour', 'fk_country');
-    await queryRunner.dropForeignKey('tour', 'fk_discount');
     return queryRunner.dropTable('tour');
   }
 

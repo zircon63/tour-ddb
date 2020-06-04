@@ -1,7 +1,6 @@
-import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Controller, Inject } from '@nestjs/common';
+import { Crud, CrudController, CrudService } from '@nestjsx/crud';
 import { TourEntity } from './tour.entity';
-import { ToursService } from './tours.service';
 
 @Crud({
   model: {
@@ -15,9 +14,6 @@ import { ToursService } from './tours.service';
       country: {
         eager: true,
       },
-      discount: {
-        eager: true,
-      },
       sales: {
         eager: true,
       },
@@ -26,7 +22,7 @@ import { ToursService } from './tours.service';
 })
 @Controller('tours')
 export class ToursController implements CrudController<TourEntity> {
-  constructor(public service: ToursService) {
+  constructor(@Inject('TourService') public service: CrudService<TourEntity>) {
   }
 
   get base(): CrudController<TourEntity> {

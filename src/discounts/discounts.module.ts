@@ -10,6 +10,7 @@ import { DiscountsController } from './discounts.controller';
       DiscountEntity,
     ], 'central'),
   ],
+  exports: [DiscountsService],
   providers: [DiscountsService],
   controllers: [DiscountsController],
 })

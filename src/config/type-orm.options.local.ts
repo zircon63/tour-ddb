@@ -21,7 +21,7 @@ export const typeOrmOptionsLocal: TypeOrmModuleAsyncOptions = {
     ],
     synchronize: false,
     migrationsRun: false,
-    logging: 'all',
+    logging: null,
     cli: {
       migrationsDir: 'dist/migration',
     },
