@@ -11,7 +11,7 @@ export class TourSeed1590930114443 implements MigrationInterface {
         price: faker.random.number({ min: 1000, max: 100000, precision: 0.1 }),
         arrival_date: faker.date.past(),
         departure_date: faker.date.future(),
-        country_id: faker.random.number({ min: 1, max: 20, precision: 1 }),
+        country_id: faker.random.number({ min: 1, max: 10, precision: 1 }),
         discount_id: faker.random.number({ min: 1, max: 4, precision: 1  }),
         tour_type_id: faker.random.number({ min: 1, max: 3, precision: 1  }),
       });
