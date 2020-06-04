@@ -13,11 +13,24 @@ export default () => ({
       session: process.env.REDIS_SESSION,
     },
   },
+  type: process.env.TYPE,
+  client: {
+    path: process.env.CLIENT_PATH,
+  },
   database: {
-    host: process.env.DATABASE_HOST,
-    name: process.env.DATABASE_NAME,
-    port: parseInt(process.env.DATABASE_PORT, 10) || 3306,
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
+    local: {
+      host: process.env.DATABASE_LOCAL_HOST,
+      name: process.env.DATABASE_LOCAL_NAME,
+      port: parseInt(process.env.DATABASE_LOCAL_PORT, 10),
+      username: process.env.DATABASE_LOCAL_USER,
+      password: process.env.DATABASE_LOCAL_PASSWORD,
+    },
+    central: {
+      host: process.env.DATABASE_CENTRAL_HOST,
+      name: process.env.DATABASE_CENTRAL_NAME,
+      port: parseInt(process.env.DATABASE_CENTRAL_PORT, 10),
+      username: process.env.DATABASE_CENTRAL_USER,
+      password: process.env.DATABASE_CENTRAL_PASSWORD,
+    },
   },
 });

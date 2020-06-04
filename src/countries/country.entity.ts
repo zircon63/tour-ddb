@@ -12,4 +12,8 @@ export class CountryEntity implements CountryInterface {
   readonly name: string;
   @OneToMany(() => TourEntity, tour => tour.country)
   tours: TourEntity[];
+
+  constructor(data: Partial<CountryInterface>) {
+    Object.assign(this, data);
+  }
 }

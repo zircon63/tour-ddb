@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="toggle.emit()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <div fxLayout="row" fxLayoutAlign="flex-start" fxFlex>
+    <h2>ООО "TOUR-DDB" ОФИС {{officeName}}</h2>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="flex-end" fxFlex>
+    <ng-container *ngIf="user.login;then logInView; else logOutView"></ng-container>
+    <ng-template #logInView>
+      <span>
+        {{user.name}} {{user.surname}}
+        <a mat-flat-button color="primary" href="/api/auth/logout">Выйти</a>
+      </span>
+    </ng-template>
+
+    <ng-template #logOutView>
+      <button mat-flat-button color="primary" [routerLink]="['/login']">Войти</button>
+    </ng-template>
+  </div>
+
+</mat-toolbar>

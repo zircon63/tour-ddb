@@ -20,7 +20,7 @@ export class ClientEntity implements ClientInterface {
   @OneToMany(() => SaleEntity, sale => sale.client)
   sales: SaleEntity[];
 
-  constructor(data: ClientInterface) {
+  constructor(data: Partial<ClientInterface>) {
     Object.assign(this, data);
   }
 }

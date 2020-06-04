@@ -10,12 +10,7 @@ export class AuthService {
               private readonly configService: ConfigService) {
   }
 
-  public async signUp(user: EmployeeEntity) {
-    user = await this.employeesService.create(user);
-    return user;
-  }
-
-  async validateUser(username: string, password: string): Promise<any> {
+  async validateUser(username: string, password: string): Promise<EmployeeEntity> {
     return await this.employeesService.findOneOrFail({ login: username })
       .then(user => {
         const isEqual = hashEqual(password, this.configService.get('auth.salt'), user.password);

@@ -9,13 +9,22 @@ import { ToursService } from './tours.service';
   },
   query: {
     join: {
-      category: {
+      tourType: {
+        eager: true,
+      },
+      country: {
+        eager: true,
+      },
+      discount: {
+        eager: true,
+      },
+      sales: {
         eager: true,
       },
     },
   },
 })
-@Controller('sales')
+@Controller('tours')
 export class ToursController implements CrudController<TourEntity> {
   constructor(public service: ToursService) {
   }

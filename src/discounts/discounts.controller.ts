@@ -15,7 +15,7 @@ import { DiscountsService } from './discounts.service';
     },
   },
 })
-@Controller('countries')
+@Controller('discounts')
 export class DiscountsController implements CrudController<DiscountEntity> {
   constructor(public service: DiscountsService) {
   }

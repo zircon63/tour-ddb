@@ -1,0 +1,60 @@
+<app-crud-table [data]="data$ | async"
+                [columnsDefinitions]="columnDefinitions"
+                [operations]="operations"
+                (add)="crud.add($event)"
+                (update)="crud.update($event.id, $event)"
+                (delete)="crud.delete($event.id, $event)">
+  <ng-template #form let-data>
+    <h2 mat-dialog-title>Тур | {{data.title}}</h2>
+    <mat-dialog-content class="mat-typography">
+      <form fxLayout="column" fxFlexAlign="center" [formGroup]="data.form">
+        <input class="cdk-visually-hidden" type="text" formControlName="id">
+        <mat-form-field fxLayout="row">
+          <mat-label>Название</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Цена</mat-label>
+          <input matInput type="text" formControlName="price">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Дата отправления</mat-label>
+          <input matInput [matDatepicker]="arrivalDate" formControlName="arrival_date">
+          <mat-datepicker-toggle matSuffix [for]="arrivalDate"></mat-datepicker-toggle>
+          <mat-datepicker #arrivalDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Дата прибытия</mat-label>
+          <input matInput [matDatepicker]="departureDate" formControlName="departure_date">
+          <mat-datepicker-toggle matSuffix [for]="departureDate"></mat-datepicker-toggle>
+          <mat-datepicker #departureDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Тип Тура</mat-label>
+          <mat-select [compareWith]="compareWith" formControlName="tourType">
+            <mat-option *ngFor="let tourType of tourTypes$ | async"
+                        [value]="tourType">{{tourType.description}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Страна</mat-label>
+          <mat-select [compareWith]="compareWith" formControlName="country">
+            <mat-option *ngFor="let country of countries$ | async"
+                        [value]="country">{{country.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Скидка</mat-label>
+          <mat-select [compareWith]="compareWith" formControlName="discount">
+            <mat-option *ngFor="let discount of discounts$ | async"
+                        [value]="discount">{{discount.amount}} - {{discount.description}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>{{data.closeLabel}}</button>
+      <button mat-button [mat-dialog-close]="data.form.value" cdkFocusInitial>{{data.actionLabel}}</button>
+    </mat-dialog-actions>
+  </ng-template>
+</app-crud-table>

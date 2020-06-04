@@ -1,0 +1,20 @@
+<form fxLayout="column"
+      fxLayoutAlign="center center"
+      fxFlexAlign="center center"
+      fxFlexFill
+      [formGroup]="authForm"
+      (ngSubmit)="login()"
+      class="pl20">
+  <h2>OOO "TOUR-DDB" ОФИС {{officeName}}</h2>
+  <mat-form-field fxLayout="row">
+    <mat-label>Логин</mat-label>
+    <input matInput type="text" formControlName="login">
+  </mat-form-field>
+  <mat-form-field fxLayout="row">
+    <mat-label>Пароль</mat-label>
+    <input matInput type="password" formControlName="password">
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button type="submit" mat-flat-button color="primary" [disabled]="authForm.invalid">Войти</button>
+  </div>
+</form>

@@ -1,13 +1,10 @@
 import { DynamicModule, Inject, Module, OnModuleInit } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
-import {
-  ANGULAR_MODULE_OPTIONS,
-  DEFAULT_RENDER_PATH,
-  DEFAULT_ROOT_PATH,
-} from './angular.constants';
+import { ANGULAR_MODULE_OPTIONS, DEFAULT_RENDER_PATH, DEFAULT_ROOT_PATH } from './angular.constants';
 import { angularProviders } from './angular.providers';
 import { AngularModuleOptions } from './interfaces/angular-options.interface';
 import { AbstractLoader } from './loaders/abstract.loader';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   providers: [...angularProviders],
@@ -18,17 +15,22 @@ export class AngularModule implements OnModuleInit {
     private readonly ngOptions: AngularModuleOptions,
     private readonly loader: AbstractLoader,
     private readonly httpAdapterHost: HttpAdapterHost,
-  ) {}
+  ) {
+  }
 
-  public static forRoot(options: AngularModuleOptions = {}): DynamicModule {
-    options.rootPath = options.rootPath || DEFAULT_ROOT_PATH;
-    options.renderPath = options.renderPath || DEFAULT_RENDER_PATH;
+  public static forRoot(): DynamicModule {
     return {
       module: AngularModule,
       providers: [
         {
           provide: ANGULAR_MODULE_OPTIONS,
-          useValue: options,
+          useFactory: (config: ConfigService) => {
+            return {
+              renderPath: config.get('client.render', DEFAULT_RENDER_PATH),
+              rootPath: config.get('client.path', DEFAULT_ROOT_PATH),
+            } as AngularModuleOptions;
+          },
+          inject: [ConfigService],
         },
       ],
     };

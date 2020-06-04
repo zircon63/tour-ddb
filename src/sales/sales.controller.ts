@@ -9,7 +9,13 @@ import { SalesService } from './sales.service';
   },
   query: {
     join: {
-      category: {
+      client: {
+        eager: true,
+      },
+      employee: {
+        eager: true,
+      },
+      tour: {
         eager: true,
       },
     },

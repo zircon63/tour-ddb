@@ -16,7 +16,7 @@ export class DiscountEntity implements DiscountInterface {
   @OneToMany(() => TourEntity, tour => tour.discount)
   tours: TourEntity[];
 
-  constructor(data: DiscountInterface) {
+  constructor(data: Partial<DiscountInterface>) {
     Object.assign(this, data);
   }
 

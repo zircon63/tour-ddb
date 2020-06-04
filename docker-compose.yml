@@ -1,0 +1,113 @@
+version: '3'
+
+services:
+  db-central:
+    image: 'postgres:12.2-alpine'
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgcentral:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: tourdb
+    networks:
+      - net
+  db-office1:
+    image: 'postgres:12.2-alpine'
+    ports:
+      - "5433:5432"
+    volumes:
+      - pglocal1:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: tourdb
+    networks:
+      - net
+  db-office2:
+    image: 'postgres:12.2-alpine'
+    ports:
+      - "5434:5432"
+    volumes:
+      - pglocal2:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: tourdb
+    networks:
+      - net
+  redis1:
+    image: redis
+    networks:
+      - net
+  redis2:
+    image: redis
+    networks:
+      - net
+  redis3:
+    image: redis
+    networks:
+      - net
+  api1:
+    image: node:12-alpine
+    working_dir: /tour-ddb
+    volumes:
+      - ./:/tour-ddb
+    command: "npm run build:central"
+    environment:
+      ENV_PATH: ./env/.env.central
+    user: ${CURRENT_UID}
+    ports:
+      - "6225:3000"
+      - "9229:9229"
+    depends_on:
+      - db-central
+      - redis1
+    networks:
+      - net
+  api2:
+    image: node:12-alpine
+    working_dir: /tour-ddb
+    volumes:
+      - ./:/tour-ddb
+    command: "npm run build:local1"
+    user: ${CURRENT_UID}
+    environment:
+      ENV_PATH: ./env/.env.local1
+    ports:
+      - "6226:3000"
+      - "9230:9229"
+    depends_on:
+      - db-office1
+      - redis2
+    networks:
+      - net
+  api3:
+    image: node:12-alpine
+    working_dir: /tour-ddb
+    volumes:
+      - ./:/tour-ddb
+    command: "npm run build:local2"
+    environment:
+      ENV_PATH: ./env/.env.local2
+    user: ${CURRENT_UID}
+    ports:
+      - "6227:3000"
+      - "9231:9229"
+    depends_on:
+      - db-office2
+      - redis3
+    networks:
+      - net
+networks:
+  net:
+    driver: bridge
+volumes:
+  pgcentral:
+    driver: 'local'
+  pglocal1:
+    driver: 'local'
+  pglocal2:
+    driver: 'local'
+

@@ -28,7 +28,7 @@ export class EmployeeEntity implements EmployeeInterface {
   @OneToMany(() => SaleEntity, sale => sale.employee)
   sales: SaleEntity[];
 
-  constructor(data: EmployeeInterface) {
+  constructor(data: Partial<EmployeeInterface>) {
     Object.assign(this, data);
   }
 }

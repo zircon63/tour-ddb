@@ -5,7 +5,11 @@ import { DiscountsService } from './discounts.service';
 import { DiscountsController } from './discounts.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DiscountEntity])],
+  imports: [
+    TypeOrmModule.forFeature([
+      DiscountEntity,
+    ], 'central'),
+  ],
   providers: [DiscountsService],
   controllers: [DiscountsController],
 })

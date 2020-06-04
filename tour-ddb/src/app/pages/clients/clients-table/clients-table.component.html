@@ -1,0 +1,35 @@
+<app-crud-table [data]="data$ | async"
+                [columnsDefinitions]="columnDefinitions"
+                [operations]="operations"
+                (add)="crud.add($event)"
+                (update)="crud.update($event.id, $event)"
+                (delete)="crud.delete($event.id, $event)">
+  <ng-template #form let-data>
+    <h2 mat-dialog-title>Клиент | {{data.title}}</h2>
+    <mat-dialog-content class="mat-typography">
+      <form fxLayout="column" fxFlexAlign="center" [formGroup]="data.form">
+        <input class="cdk-visually-hidden" type="text" formControlName="id">
+        <mat-form-field fxLayout="row">
+          <mat-label>Имя</mat-label>
+          <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Фамилия</mat-label>
+          <input matInput type="text" formControlName="surname">
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Паспорт</mat-label>
+          <input matInput type="text" formControlName="passport">
+        </mat-form-field>
+        <mat-form-field fxLayout="row">
+          <mat-label>Телефон</mat-label>
+          <input matInput type="text" formControlName="phone">
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>{{data.closeLabel}}</button>
+      <button mat-button [mat-dialog-close]="data.form.value" cdkFocusInitial>{{data.actionLabel}}</button>
+    </mat-dialog-actions>
+  </ng-template>
+</app-crud-table>

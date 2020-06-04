@@ -14,7 +14,7 @@ export class TourTypeEntity implements TourTypeInterface {
   @OneToMany(() => TourEntity, tour => tour.tourType)
   tours: TourEntity[];
 
-  constructor(data: TourTypeInterface) {
+  constructor(data: Partial<TourTypeInterface>) {
     Object.assign(this, data);
   }
 

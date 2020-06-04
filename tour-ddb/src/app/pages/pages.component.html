@@ -1,0 +1,16 @@
+<app-header
+  [user]="user$ | async"
+  (toggle)="drawer.toggle()">
+</app-header>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="over" class="example-sidenav"
+               opened
+               [fixedInViewport]="false">
+    <app-menu title="Pizza-store" [items]="menu$ | async"></app-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/local2"
+  },
+  "exclude": [
+    "node_modules",
+    "test",
+    "dist",
+    "tour-ddb",
+    "**/*spec.ts"
+  ]
+}
+

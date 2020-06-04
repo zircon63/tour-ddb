@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DiscountsService extends TypeOrmCrudService<DiscountEntity> {
-  constructor(@InjectRepository(DiscountEntity) repo) {
+  constructor(@InjectRepository(DiscountEntity, 'central') repo) {
     super(repo);
   }
 }
