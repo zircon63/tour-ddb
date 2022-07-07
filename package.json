@@ -39,7 +39,7 @@
     "cookie-parser": "^1.4.4",
     "express-session": "^1.17.0",
     "faker": "^4.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "redis": "^2.8.0",
